@@ -1,0 +1,211 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a252f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  max-width: 650px;
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 5px;
+  color: #f1c40f; /* 幸運的金色 */
+  text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+  animation: pulseText 2.5s infinite alternate;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  color: #bdc3c7;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* 讓手錶有漂浮的感覺 */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 文字發光呼吸燈 */
+@keyframes pulseText {
+  0% {
+    text-shadow: 0 0 5px rgba(241, 196, 15, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 18px rgba(241, 196, 15, 0.9);
+  }
+}
+
+.watch {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 30px;
+  display: inline-block;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 2px 10px rgba(255, 255, 255, 0.1);
+  position: relative;
+  border: 2px solid #333;
+  outline: 5px solid #000;
+  /* 預設的漂浮動畫 */
+  animation: float 4s ease-in-out infinite;
+  /* 轉換動畫設定 */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 滑鼠懸停 (Hover) 時的幸運光暈與放大效果 */
+.watch:hover {
+  transform: scale(1.08) translateY(-5px);
+  box-shadow:
+    0 15px 50px rgba(241, 196, 15, 0.45),
+    inset 0 2px 10px rgba(255, 255, 255, 0.2);
+  border-color: #555;
+  animation-play-state: paused; /* 懸停時暫停漂浮，強調互動的放大效果 */
+  cursor: pointer;
+}
+
+.screen {
+  background-color: #9ea79a; /* Classic LCD gray-green */
+  border: 4px solid #000;
+  border-radius: 8px;
+  padding: 20px 25px;
+  width: 220px;
+  height: 110px;
+  margin: 0 auto 25px;
+  color: #111; /* LCD digits color */
+  font-family: "Courier New", monospace; /* Monospace for digits */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    background-color 0.15s,
+    box-shadow 0.15s;
+  position: relative;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.screen.light-on {
+  background-color: #55ff55; /* Casio green backlight */
+  box-shadow: inset 0 0 25px rgba(0, 255, 0, 0.6);
+}
+
+.day-date {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.time {
+  font-size: 4rem;
+  font-weight: bold;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  letter-spacing: -2px;
+}
+
+.seconds {
+  font-size: 1.8rem;
+  margin-left: 8px;
+  letter-spacing: 0;
+}
+
+.mode-indicator {
+  font-size: 1.1rem;
+  text-align: left;
+  font-weight: 900;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn {
+  background-color: #444;
+  color: #ccc;
+  border: 2px solid #222;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  box-shadow: 0 4px 0 #111; /* 3D 按鈕立體感 */
+  transition: all 0.15s ease;
+  flex: 1;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* 按鈕懸停效果 (Hover) */
+.btn:hover {
+  background-color: #5c5c5c;
+  color: #fff;
+  box-shadow:
+    0 4px 0 #111,
+    0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* 按鈕點擊下壓效果 (Click) */
+.btn:active {
+  background-color: #3498db; /* 點擊時顯示預設藍色反饋 */
+  color: #fff;
+  transform: translateY(4px); /* 按鈕下壓特效 */
+  box-shadow: 0 0px 0 #111; /* 立體陰影消失 */
+}
+
+/* 特定按鈕點擊顏色 (LIGHT) */
+#btn-light:active {
+  background-color: #2ecc71;
+}
+
+/* 特定按鈕點擊顏色 (ALARM) */
+#btn-alarm:active {
+  background-color: #e74c3c;
+}
+
+.controls {
+  margin-top: 50px;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.controls h3 {
+  margin-top: 0;
+  color: #f39c12;
+  border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+  padding-bottom: 10px;
+}
+
+.controls ul {
+  line-height: 1.8;
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.controls li strong {
+  color: #3498db;
+}
